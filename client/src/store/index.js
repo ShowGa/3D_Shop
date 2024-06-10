@@ -6,8 +6,8 @@ const state = proxy({
   isLogoTexture: true,
   isFullTexture: false,
   isLogo: true,
-  logoDecal: "./threejs.png",
-  fullDecal: "./threejs.png",
+  logoDecal: "./ShowGa.png",
+  fullDecal: "./ShowGa.png",
 });
 
 export default state;

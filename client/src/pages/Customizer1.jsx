@@ -20,6 +20,30 @@ import {
 const Customizer1 = () => {
   const snap = useSnapshot(state);
 
+  const [file, setFile] = useState("");
+  const [prompt, setPrompt] = useState("");
+  const [generateingImg, setgenerateingImg] = useState(false);
+
+  const [activeEditorTab, setActiveEditorTab] = useState("");
+  const [avtiveFilterTab, setAvtiveFilterTab] = useState({
+    logoShirt: true,
+    stylishShirt: false,
+  });
+
+  // show tab content depending on the activeTab
+  const generateTabContent = () => {
+    switch (activeEditorTab) {
+      case "colorpicker":
+        return <ColorPicker />;
+      case "filepicker":
+        return <FilePicker />;
+      case "aipicker":
+        return <AiPicker />;
+      default:
+        break;
+    }
+  };
+
   return (
     <AnimatePresence>
       {!snap.intro && (
@@ -33,9 +57,21 @@ const Customizer1 = () => {
               <div className="editortabs-container tabs">
                 {EditorTabs.map((tab) => {
                   return (
-                    <Tab key={tab.name} tab={tab} handleClick={() => {}} />
+                    <Tab
+                      key={tab.name}
+                      tab={tab}
+                      handleClick={() => {
+                        if (activeEditorTab === tab.name) {
+                          setActiveEditorTab("");
+                          return;
+                        }
+                        setActiveEditorTab(tab.name);
+                      }}
+                    />
                   );
                 })}
+
+                {generateTabContent()}
               </div>
             </div>
           </motion.div>
