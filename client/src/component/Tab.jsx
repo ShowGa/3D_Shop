@@ -7,11 +7,11 @@ import ColorPicker from "./ColorPicker";
 import FilePicker from "./FilePicker";
 import AiPicker from "./AiPicker";
 
-const Tab = ({ tab, isFillterTab, isActiveTab, handleClick }) => {
+const Tab = ({ tab, isFilterTab, isActiveTab, handleClick }) => {
   const snap = useSnapshot(state);
 
   const activeStyles =
-    isFillterTab && isActiveTab
+    isFilterTab && isActiveTab
       ? { background: snap.color, opacity: 0.5 }
       : { backgroundColor: "transparent", opacity: 1 };
 
@@ -19,7 +19,7 @@ const Tab = ({ tab, isFillterTab, isActiveTab, handleClick }) => {
     <div
       key={tab.name}
       className={`tab-btn ${
-        isFillterTab ? "rounded-full glassmorhism" : "rounded-4"
+        isFilterTab ? "rounded-full glassmorhism" : "rounded-4"
       }`}
       onClick={handleClick}
       style={activeStyles}
@@ -28,7 +28,7 @@ const Tab = ({ tab, isFillterTab, isActiveTab, handleClick }) => {
         src={tab.icon}
         alt={tab.name}
         className={`${
-          isFillterTab ? "w-2/3 h-2/3" : "w-11/12 h-11/12 object-contain"
+          isFilterTab ? "w-2/3 h-2/3" : "w-11/12 h-11/12 object-contain"
         }`}
       />
     </div>
