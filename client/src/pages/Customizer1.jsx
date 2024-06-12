@@ -16,13 +16,15 @@ import {
   Tab,
   CustomButton,
 } from "../component";
+// react-hot-toast
+import toast from "react-hot-toast";
 
 const Customizer1 = () => {
   const snap = useSnapshot(state);
 
   const [file, setFile] = useState("");
   const [prompt, setPrompt] = useState("");
-  const [generateingImg, setGenerateingImg] = useState(false);
+  const [generatingImg, setGenerateingImg] = useState(false);
 
   const [activeEditorTab, setActiveEditorTab] = useState("");
   const [activeFilterTab, setActiveFilterTab] = useState({
@@ -52,12 +54,12 @@ const Customizer1 = () => {
   };
 
   const handleSubmit = async (type) => {
-    if (!prompt) return alert("Please enter a prompt !");
+    if (!prompt) return toast.error("Please enter a prompt !");
 
     try {
       // call backend to generat AI image
     } catch (error) {
-      alert(error);
+      toast.error(error);
     } finally {
       setGenerateingImg(false);
       setActiveEditorTab("");
@@ -121,6 +123,10 @@ const Customizer1 = () => {
                         if (tab.name === activeEditorTab) {
                           setActiveEditorTab("");
                           return;
+                        } else if (tab.name === "aipicker") {
+                          toast("AI generated feature upcoming !", {
+                            icon: "🔴",
+                          });
                         }
                         setActiveEditorTab(tab.name);
                       }}

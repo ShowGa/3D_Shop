@@ -2,10 +2,6 @@ import React, { useState } from "react";
 import { useSnapshot } from "valtio";
 
 import state from "../store";
-import { logoShirt, stylishShirt } from "../assets";
-import ColorPicker from "./ColorPicker";
-import FilePicker from "./FilePicker";
-import AiPicker from "./AiPicker";
 
 const Tab = ({ tab, isFilterTab, isActiveTab, handleClick }) => {
   const snap = useSnapshot(state);
